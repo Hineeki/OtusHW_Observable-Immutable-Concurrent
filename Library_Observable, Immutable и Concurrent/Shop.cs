@@ -31,8 +31,9 @@ namespace LibraryObservableCollection
             {
                 if(item.Id == itemID)
                 {
-                    _items.Remove(item);
-                    NotifyObservers($"Удалён {item.Name}. ID {item.Id}");
+                    var itemToRemove = _items.Find(x => x.Id == itemID);//берём "типичный" элемент коллекции=> вызываем какой-нибудь параметр "типичного" элемента и сраниваем со входящим значением. WOW
+                    _items.Remove(itemToRemove);
+                    NotifyObservers($"Удалён {itemToRemove.Name}. ID {itemToRemove.Id}");
                     break;
                 }
                 else
@@ -41,8 +42,6 @@ namespace LibraryObservableCollection
                     return;
                 }
             }
-            //var itemToRemove = _items.Find(x => x.Id == itemID);//берём "типичный" элемент коллекции=> вызываем какой-нибудь параметр "типичного" элемента и сраниваем со входящим значением. WOW
-            //_items.Remove(itemToRemove);
         }
         public void RegisterCustomer(Customer customer)
         {
